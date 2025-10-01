@@ -42,7 +42,7 @@ if authentication_status:
 
     st.title("📊 Dashboard Usage Data")
 
-    file_path = r"D:\Support Marketing\Usage\python\usage-company.xlsx"
+    file_path = os.path.join(os.path.dirname(__file__), "usage-company.xlsx")
     if os.path.exists(file_path):
         df = pd.read_excel(file_path, sheet_name="Sheet1")
 
