@@ -1,0 +1,13 @@
+# Core
+streamlit>=1.37.0
+pandas>=2.2.0
+openpyxl>=3.1.2
+
+# Authenticator (pastikan pakai versi baru dengan dukungan "users")
+streamlit-authenticator>=0.4.1
+
+# Charts
+plotly>=5.22.0
+
+# Optional performance
+numpy>=1.26.4
