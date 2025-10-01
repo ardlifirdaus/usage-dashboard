@@ -13,7 +13,7 @@ credentials = {
     "usernames": {
         "handsome-support": {
             "name": "Handsome Support",
-            "password": "$2b$12$8LCmjipKFaOD1.PdTHHPgeYtGRRHXt1MyV/tRJpZ3PSuvHLt.p8dK"  # hash dari 'ter1makas1h-4rdl1'
+            "password": "$2b$12$8LCmjipKFaOD1.PdTHHPgeYtGRRHXt1MyV/tRJpZ3PSuvHLt.p8dK"  
         }
     }
 }
