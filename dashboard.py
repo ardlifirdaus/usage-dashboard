@@ -63,12 +63,21 @@ if authentication_status:
         "9": "September", "10": "Oktober", "11": "November", "12": "Desember"
     }
 
-    # tahun (fallback ke '2025' jika tidak ada kolom)
-    if "masa_pajak_tahun" in df.columns:
+    # ==============================
+    # Filter Tahun Pajak
+    # ==============================
+    if "tahun_pajak" in df.columns:
+        tahun_options = sorted(df["tahun_pajak"].dropna().unique().tolist())
+    elif "masa_pajak_tahun" in df.columns:
         tahun_options = sorted(df["masa_pajak_tahun"].dropna().unique().tolist())
     else:
         tahun_options = ["2025"]
-    selected_year = st.sidebar.selectbox("Pilih Tahun", tahun_options, index=len(tahun_options)-1)
+    
+    selected_year = st.sidebar.selectbox(
+        "Pilih Tahun Pajak",
+        tahun_options,
+        index=len(tahun_options)-1
+    )
 
     # bulan pilihan (display nama)
     bulan_options_display = list(bulan_map.values())
@@ -128,8 +137,10 @@ if authentication_status:
         st.warning("⚠️ Tidak ada company dipilih. Pilih minimal 1 company.")
         st.stop()
 
-    # year
-    if "masa_pajak_tahun" in df.columns:
+    # filter berdasarkan tahun pajak
+    if "tahun_pajak" in df.columns:
+        df = df[df["tahun_pajak"] == selected_year]
+    elif "masa_pajak_tahun" in df.columns:
         df = df[df["masa_pajak_tahun"] == selected_year]
 
     # services
