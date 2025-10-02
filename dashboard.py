@@ -76,57 +76,47 @@ if authentication_status:
     # map back to numbers as strings
     selected_month_nums = [k for k, v in bulan_map.items() if v in bulan_selected_display]
 
-    # company filter with Check All / Uncheck All + search
+    # ==============================
+    # Company filter with Check All / Uncheck All (tanpa search box tambahan)
+    # ==============================
     st.sidebar.markdown("### Filter Company")
     all_companies = sorted(df["nama"].dropna().unique().tolist())
-    search_company = st.sidebar.text_input("Cari Company (ketik sebagian nama, lalu tekan Enter)").strip().lower()
-    if search_company:
-        company_options = [c for c in all_companies if search_company in c.lower()]
-    else:
-        company_options = all_companies
 
-    # persistent selection via session_state
     if "companies_selected" not in st.session_state:
-        st.session_state.companies_selected = company_options
+        st.session_state["companies_selected"] = all_companies.copy()
 
     col_ca, col_uc = st.sidebar.columns(2)
-    with col_ca:
-        if st.button("✅ Check All", key="check_all_comp"):
-            st.session_state.companies_selected = company_options
-    with col_uc:
-        if st.button("❌ Uncheck All", key="uncheck_all_comp"):
-            st.session_state.companies_selected = []
+    if col_ca.button("✅ Check All", key="check_all_comp"):
+        st.session_state["companies_selected"] = all_companies.copy()
+    if col_uc.button("❌ Uncheck All", key="uncheck_all_comp"):
+        st.session_state["companies_selected"] = []
 
     companies_selected = st.sidebar.multiselect(
         "Pilih Company",
-        options=company_options,
-        default=st.session_state.companies_selected,
-        key="company_multiselect"
+        options=all_companies,
+        key="companies_selected"
     )
-    # store latest selection
-    st.session_state.companies_selected = companies_selected
 
-    # service_detail filter with Check All / Uncheck All
+    # ==============================
+    # Service_detail filter with Check All / Uncheck All (fixed)
+    # ==============================
     st.sidebar.markdown("### Filter Service Detail")
     all_services = sorted(df["service_detail"].dropna().unique().tolist())
+
     if "services_selected" not in st.session_state:
-        st.session_state.services_selected = all_services
+        st.session_state["services_selected"] = all_services.copy()
 
     col_sca, col_suc = st.sidebar.columns(2)
-    with col_sca:
-        if st.button("✅ Check All Services", key="check_all_serv"):
-            st.session_state.services_selected = all_services
-    with col_suc:
-        if st.button("❌ Uncheck All Services", key="uncheck_all_serv"):
-            st.session_state.services_selected = []
+    if col_sca.button("✅ Check All Services", key="check_all_serv"):
+        st.session_state["services_selected"] = all_services.copy()
+    if col_suc.button("❌ Uncheck All Services", key="uncheck_all_serv"):
+        st.session_state["services_selected"] = []
 
     services_selected = st.sidebar.multiselect(
         "Pilih Service Detail",
         options=all_services,
-        default=st.session_state.services_selected,
-        key="service_multiselect"
+        key="services_selected"
     )
-    st.session_state.services_selected = services_selected
 
     # ==============================
     # Apply filters to df (order: company -> year -> service -> months)
