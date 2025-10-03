@@ -162,7 +162,18 @@ if authentication_status:
 
     # compute per-row filtered total (based on selected months)
     df["filtered_total"] = df[month_cols].sum(axis=1)
-
+    
+    # ==============================
+    # Konsistensi Warna Chart
+    # ==============================
+    color_map = {
+        "keluaran": "darkblue",
+        "masukan": "orange",
+        "dalam-negri": "red",
+        "luar-negri": "green",
+        "self": "purple"
+    }
+    
     # ==============================
     # Pie Chart -> ring (hole)
     # ==============================
@@ -173,8 +184,11 @@ if authentication_status:
         names="service_detail",
         values="filtered_total",
         title="Distribusi Usage per Service Detail",
-        hole=0.4  # ring
+        hole=0.4,
+        color="service_detail",  # penting
+        color_discrete_map=color_map
     )
+
     # show percentages and labels nicely
     fig_pie.update_traces(textinfo="percent+label", textposition="inside", pull=[0.02]*len(pie_data))
     st.plotly_chart(fig_pie, use_container_width=True)
@@ -198,7 +212,9 @@ if authentication_status:
         color="service_detail",
         barmode="stack",
         title="Total Usage per Bulan",
+        color_discrete_map=color_map
     )
+
     fig_bar.update_xaxes(categoryorder="array", categoryarray=bulan_order_vals)
     st.plotly_chart(fig_bar, use_container_width=True)
 
