@@ -171,7 +171,8 @@ if authentication_status:
         "masukan": "#FFD700",
         "dalam-negri": "#87CEFA",
         "luar-negri": "#90EE90",
-        "self": "#DA70D6"
+        "self": "#DA70D6",
+        "vswp": "#FF69B4"
     }
     
     service_order = ["keluaran", "masukan", "dalam-negri", "luar-negri", "self"]
