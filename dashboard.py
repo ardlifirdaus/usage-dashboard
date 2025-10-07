@@ -164,15 +164,17 @@ if authentication_status:
     df["filtered_total"] = df[month_cols].sum(axis=1)
     
     # ==============================
-    # Konsistensi Warna Chart
+    # Konsistensi Warna Chart dan Order Legend
     # ==============================
     color_map = {
-        "keluaran": "darkblue",
-        "masukan": "orange",
-        "dalam-negri": "red",
-        "luar-negri": "green",
-        "self": "purple"
+        "keluaran": "#FFB347",
+        "masukan": "#FFD700",
+        "dalam-negri": "#87CEFA",
+        "luar-negri": "#90EE90",
+        "self": "#DA70D6"
     }
+    
+    service_order = ["keluaran", "masukan", "dalam-negri", "luar-negri", "self"]
     
     # ==============================
     # Pie Chart -> ring (hole)
@@ -186,13 +188,20 @@ if authentication_status:
         title="Distribusi Usage per Service Detail",
         hole=0.4,
         color="service_detail",  # penting
-        color_discrete_map=color_map
+        color_discrete_map=color_map,
+        category_orders={"service_detail": service_order}
     )
 
     # show percentages and labels nicely
     fig_pie.update_traces(textinfo="percent+label", textposition="inside", pull=[0.02]*len(pie_data))
-    st.plotly_chart(fig_pie, use_container_width=True)
-
+    st.plotly_chart(
+        fig_pie,
+        config={
+            "displayModeBar": False,
+            "responsive": True
+        }
+    )
+    
     # ==============================
     # Bar Chart (stacked per service_detail)
     # ==============================
@@ -202,7 +211,7 @@ if authentication_status:
     # ensure ordering
     bulan_order_vals = [bulan_map[k] for k in sorted(selected_month_nums, key=lambda x: int(x))]
     df_melt["bulan"] = pd.Categorical(df_melt["bulan"], categories=bulan_order_vals, ordered=True)
-    usage_per_month_detail = df_melt.groupby(["bulan", "service_detail"], as_index=False)["jumlah"].sum()
+    usage_per_month_detail = df_melt.groupby(["bulan", "service_detail"], as_index=False, observed=False)["jumlah"].sum()
 
     st.subheader("📊 Total Usage per Bulan")
     fig_bar = px.bar(
@@ -212,18 +221,25 @@ if authentication_status:
         color="service_detail",
         barmode="stack",
         title="Total Usage per Bulan",
-        color_discrete_map=color_map
+        color_discrete_map=color_map,
+        category_orders={"service_detail": service_order}
     )
 
     fig_bar.update_xaxes(categoryorder="array", categoryarray=bulan_order_vals)
-    st.plotly_chart(fig_bar, use_container_width=True)
+    st.plotly_chart(
+        fig_bar,
+        config={
+            "displayModeBar": False,
+            "responsive": True
+        }
+    )
 
     # ==============================
     # Ringkasan Data (table)
     # ==============================
     summary = pie_data.rename(columns={"service_detail": "Service Detail", "filtered_total": "Total"})
     st.subheader("📑 Ringkasan Data")
-    st.dataframe(summary.style.format({"Total": "{:,.0f}"}), use_container_width=True)
+    st.dataframe(summary.style.format({"Total": "{:,.0f}"}), width='stretch')
 
     # --------------------------
     # Top 10 Company — robust mapping & pivot (uses selected months)
@@ -269,7 +285,7 @@ if authentication_status:
     fmt = {c: "{:,.0f}" for c in num_cols}
 
     st.subheader("🏆 Top 10 Company dengan Usage Terbanyak")
-    st.dataframe(top10.style.format(fmt), use_container_width=True)
+    st.dataframe(top10.style.format(fmt), width='stretch')
 
     # ==============================
     # Download Option
