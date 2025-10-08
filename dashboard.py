@@ -205,7 +205,14 @@ if authentication_status:
             "responsive": True
         }
     )
-
+    
+    # ==============================
+    # Ringkasan Data (table)
+    # ==============================
+    summary = pie_data.rename(columns={"service_detail": "Service Detail", "filtered_total": "Total"})
+    st.subheader("📑 Ringkasan Data")
+    st.dataframe(summary.style.format({"Total": "{:,.0f}"}), width='stretch')
+    
     # ==============================
     # 🏆 Top 10 Company
     # ==============================
