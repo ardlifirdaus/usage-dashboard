@@ -11,9 +11,9 @@ st.set_page_config(page_title="Dashboard Usage", layout="wide")
 # ==============================
 credentials = {
     "usernames": {
-        "tech-support": {
-            "name": "Tech Support",
-            "password": "$2b$12$d/VwPhBIaAKujSjDrGCU3Osm08gv7oQtXjkv2K2CdjZfj0zsKbXTu"  
+        "pixel-guardian": {
+            "name": "Pixel Guardian",
+            "password": "$2b$12$DYaJpiZYUn/RCFTJnu0k.O8ELLeMqWMhRY9CBYXsQXPOkMJgjq91K"  
         }
     }
 }
