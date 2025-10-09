@@ -11,9 +11,9 @@ st.set_page_config(page_title="Dashboard Usage", layout="wide")
 # ==============================
 credentials = {
     "usernames": {
-        "handsome-support": {
-            "name": "Handsome Support",
-            "password": "$2b$12$8LCmjipKFaOD1.PdTHHPgeYtGRRHXt1MyV/tRJpZ3PSuvHLt.p8dK"  # hash dari 'ter1makas1h-4rdl1'
+        "tech-support": {
+            "name": "Tech Support",
+            "password": "$2b$12$d/VwPhBIaAKujSjDrGCU3Osm08gv7oQtXjkv2K2CdjZfj0zsKbXTu"  
         }
     }
 }
