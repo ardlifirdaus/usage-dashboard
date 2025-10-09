@@ -22,7 +22,7 @@ authenticator = stauth.Authenticate(
     credentials=credentials,
     cookie_name="streamlit_dashboard",
     key="abcdef",
-    cookie_expiry_days=1
+    cookie_expiry_days=0.01  # 15 menit
 )
 
 # ==============================
