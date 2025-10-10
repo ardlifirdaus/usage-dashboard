@@ -83,7 +83,7 @@ if authentication_status:
 
     # Company Filter
     st.sidebar.markdown("### Filter Company")
-    all_companies = sorted(df["nama"].dropna().unique().tolist())
+    all_companies = sorted(df["nama"].dropna().astype(str).unique().tolist())
     if "companies_selected" not in st.session_state:
         st.session_state["companies_selected"] = all_companies.copy()
 
