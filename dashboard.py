@@ -41,7 +41,7 @@ if authentication_status:
     st.sidebar.success(f"Welcome 👋 {display_name}")
     authenticator.logout("Logout", "sidebar", key="logout_btn")
 
-    st.title("📊 Dashboard Usage Data")
+    st.title("📊 Dashboard Usage Data (Dummy)")
 
     # path file Excel
     file_path = os.path.join(os.path.dirname(__file__), "usage-company.xlsx")
