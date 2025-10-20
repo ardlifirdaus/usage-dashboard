@@ -7,13 +7,13 @@ import plotly.express as px
 st.set_page_config(page_title="Dashboard Usage", layout="wide")
 
 # ==============================
-# 🔐 Konfigurasi Login update credentials
+# 🔐 Konfigurasi Login update credentials github
 # ==============================
 credentials = {
     "usernames": {
-        "pixel-guardian": {
-            "name": "Pixel Guardian",
-            "password": "$2b$12$DYaJpiZYUn/RCFTJnu0k.O8ELLeMqWMhRY9CBYXsQXPOkMJgjq91K"  
+        "sylva-zoldyck": {
+            "name": "Sylva Zoldyck",
+            "password": "$2b$12$ZcIcgKCZJLhvnUaa7rLYrujQ/NzybLcJKZz7UG9vYfTew0aNQs1hm"  
         }
     }
 }
