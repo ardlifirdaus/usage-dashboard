@@ -12,7 +12,6 @@ from components.charts import pie_chart, bar_chart
 from components.tables import top10_table
 from utils.color_map import color_map
 
-
 class DashboardApp:
     def __init__(self):
         self.df = None
