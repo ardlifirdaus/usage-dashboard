@@ -1,0 +1,12 @@
+# Exclude folder
+gitlab/
+backup/
+
+# Exclude file sementara atau sensitif
+*.log
+*.env
+*.xlsx
+
+# Exclude VSCode / IDE cache
+.vscode/
+__pycache__/
