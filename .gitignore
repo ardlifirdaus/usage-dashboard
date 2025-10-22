@@ -7,6 +7,9 @@ backup/
 *.env
 *.xlsx
 
+# Ignore dummy marquee file
+marquee_text.py
+
 # Exclude VSCode / IDE cache
 .vscode/
 __pycache__/

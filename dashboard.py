@@ -1,9 +1,12 @@
 import streamlit as st
+st.set_page_config(layout="wide")
+
 import streamlit_authenticator as stauth
 import pandas as pd
 import os
 import yaml
 from yaml.loader import SafeLoader
+from marquee_text import get_marquee_title
 
 from data_sources.usage_source import UsageSource
 from data_sources.dpp_ppn_source import DppPpnSource
@@ -144,7 +147,7 @@ class DashboardApp:
         self.select_data_source()
         self.apply_filters()
 
-        st.title(self.titles["main"])
+        st.markdown(self.titles["main"], unsafe_allow_html=True)
         self.render_pie_chart()
         self.render_bar_chart_and_summary()
         self.render_top10()

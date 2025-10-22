@@ -1,4 +1,5 @@
 from data_sources.base_source import BaseDataSource
+from marquee_text import get_marquee_title
 
 class UsageSource(BaseDataSource):
     def clean_data(self):
@@ -13,7 +14,7 @@ class UsageSource(BaseDataSource):
 
     def get_dashboard_titles(self):
         return {
-            "main": "📊 Dashboard Usage Data (Dummy)",
+            "main": get_marquee_title("📊 Dashboard Usage Data"),
             "pie": "Distribusi Usage per Service Detail",
             "bar": "Total Usage per Bulan",
             "top10": "Top 10 Company dengan Usage Terbanyak"

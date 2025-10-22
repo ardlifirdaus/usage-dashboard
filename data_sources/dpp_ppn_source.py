@@ -1,5 +1,6 @@
 import pandas as pd
 from data_sources.base_source import BaseDataSource
+from marquee_text import get_marquee_title
 
 class DppPpnSource(BaseDataSource):
     def clean_data(self):
@@ -19,7 +20,7 @@ class DppPpnSource(BaseDataSource):
 
     def get_dashboard_titles(self):
         return {
-            "main": "📊 Dashboard Dpp & Ppn Data (Dummy)",
+            "main": get_marquee_title("📊 Dashboard Dpp & Ppn Data"),
             "pie": "Distribusi Dpp & Ppn per Amount Detail",
             "bar": "Total Dpp & Ppn per Bulan",
             "top10": "Top 10 Company dengan Dpp & Ppn Terbanyak"
