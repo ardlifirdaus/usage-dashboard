@@ -188,11 +188,20 @@ if authentication_status:
     if col_suc.button("❌ Uncheck All", key=f"uncheck_all_{mode}"):
         st.session_state[service_key] = []
     
+    # Pastikan default value valid
+    previous_selected = st.session_state.get(service_key, all_services)
+    valid_defaults = [s for s in previous_selected if s in all_services]
+    
+    # Jika tidak ada valid default, isi semua agar tidak kosong
+    if not valid_defaults:
+        valid_defaults = all_services.copy()
+        st.session_state[service_key] = valid_defaults
+    
     # Multiselect
     services_selected = st.sidebar.multiselect(
         f"Pilih {filter_label}",
         options=all_services,
-        default=st.session_state.get(service_key, all_services),
+        default=valid_defaults,
         key=service_key
     )
     
