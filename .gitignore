@@ -5,10 +5,9 @@ backup/
 # Exclude file sementara atau sensitif
 *.log
 *.env
-*.xlsx
 
 # Ignore dummy marquee file
-marquee_text.py
+usage-dashboard.git/
 
 # Exclude VSCode / IDE cache
 .vscode/
