@@ -276,7 +276,6 @@ if authentication_status:
         hole=0.4,
         color=detail_field,
         color_discrete_map=color_map if mode == "dpp_ppn" else default_color_map,
-        category_orders={detail_field: service_order}
     )
     st.plotly_chart(fig_pie, use_container_width=True, config={"displayModeBar": False})
 
@@ -297,7 +296,6 @@ if authentication_status:
         color=detail_field,
         barmode="stack",
         color_discrete_map=color_map if mode == "dpp_ppn" else default_color_map,
-        category_orders={detail_field: service_order}
     )
     fig_bar.update_xaxes(categoryorder="array", categoryarray=bulan_order_vals)
     st.plotly_chart(fig_bar, use_container_width=True, config={"displayModeBar": False})
